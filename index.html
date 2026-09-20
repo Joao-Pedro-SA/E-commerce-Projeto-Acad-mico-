@@ -20,9 +20,9 @@
     <div class="actions">
       <label class="search">
         <span>⌕</span>
-        <input type="search" placeholder="Buscar produtos..." />
+        <input type="search" id="busca-produto" placeholder="Buscar produtos..." />
       </label>
-      <button><a href="carrinho.html" class="cart" aria-label="Acessar carrinho">🛒 <span>2</span></a></button>
+      <button><a href="carrinho.html" class="cart" aria-label="Acessar carrinho">🛒 <span id="contador-carrinho">0</span></a></button>
     </div>
   </header>
 
@@ -49,83 +49,45 @@
 
     <section class="brands">
       <div class="container brand-row">
-        <span>VERSACE</span><span>ZARA</span><span>GUCCI</span><span>PRADA</span><span>Calvin Klein</span>
+        <span>VERSACE</span> <span>SAMSUNG</span> <span>APPLE</span> <span>RED DRAGON</span> <span>Calvin Klein</span>
       </div>
     </section>
 
     <section id="produtos" class="section container">
-      <div class="section-heading">
+
+    <div class="section-heading">
         <div>
-          <span class="eyebrow">Seleção especial</span>
-          <h2>PRODUTOS DISPONÍVEIS</h2>
+            <span class="eyebrow">Seleção especial</span>
+            <h2>PRODUTOS DISPONÍVEIS</h2>
         </div>
-        <a href="#carrinho" class="btn btn-light">Ver carrinho</a>
-      </div>
 
-      <div class="product-grid">
-        <article class="product-card">
-          <div class="product-image tshirt-black"><span>URBAN</span></div>
-          <div class="product-body">
-            <span class="category">Camisetas</span>
-            <h3>Camiseta Essential Black</h3>
-            <div class="rating">★★★★★ <small>4,8/5</small></div>
-            <div class="availability in-stock">Em estoque</div>
-            <div class="price-row"><strong>R$ 129,90</strong></div>
-            <button class="add-cart">Adicionar ao carrinho</button>
-          </div>
-        </article>
+        <a href="#carrinho.html" class="btn btn-light">
+            Ver carrinho
+        </a>
+    </div>
 
-        <article class="product-card">
-          <div class="product-image jeans"><div class="leg left"></div><div class="leg right"></div></div>
-          <div class="product-body">
-            <span class="category">Calças</span>
-            <h3>Jeans Slim Fit</h3>
-            <div class="rating">★★★★☆ <small>4,4/5</small></div>
-            <div class="availability in-stock">Em estoque</div>
-            <div class="price-row"><strong>R$ 239,90</strong><del>R$ 279,90</del><span>-14%</span></div>
-            <button class="add-cart">Adicionar ao carrinho</button>
-          </div>
-        </article>
+    <div class="filtros">
 
-        <article class="product-card">
-          <div class="product-image shirt-plaid"><div class="shirt-shape"></div></div>
-          <div class="product-body">
-            <span class="category">Camisas</span>
-            <h3>Camisa Xadrez Classic</h3>
-            <div class="rating">★★★★★ <small>4,9/5</small></div>
-            <div class="availability low-stock">Últimas unidades</div>
-            <div class="price-row"><strong>R$ 179,90</strong></div>
-            <button class="add-cart">Adicionar ao carrinho</button>
-          </div>
-        </article>
+    <label for="filtro-categoria">
+        Categoria:
+    </label>
 
-        <article class="product-card">
-          <div class="product-image tee-orange"><div class="tee-shape">SPORT</div></div>
-          <div class="product-body">
-            <span class="category">Esportivo</span>
-            <h3>Camiseta Sport Orange</h3>
-            <div class="rating">★★★★☆ <small>4,3/5</small></div>
-            <div class="availability in-stock">Em estoque</div>
-            <div class="price-row"><strong>R$ 139,90</strong><del>R$ 169,90</del><span>-18%</span></div>
-            <button class="add-cart">Adicionar ao carrinho</button>
-          </div>
-        </article>
-      </div>
-    </section>
+    <select id="filtro-categoria">
+        <option value="Todos">Todos</option>
+    </select>
 
-    <section id="novidades" class="section soft-bg">
-      <div class="container">
-        <div class="section-heading centered">
-          <div><span class="eyebrow">Mais procurados</span><h2>TOP VENDAS</h2></div>
-        </div>
-        <div class="product-grid compact">
-          <article class="mini-card"><div class="mini-img green"></div><h3>Camisa Vertical</h3><p>R$ 212,00</p></article>
-          <article class="mini-card"><div class="mini-img coral">URBAN</div><h3>Camiseta Graphic</h3><p>R$ 145,00</p></article>
-          <article class="mini-card"><div class="mini-img shorts"></div><h3>Bermuda Loose Fit</h3><p>R$ 89,90</p></article>
-          <article class="mini-card"><div class="mini-img pants"></div><h3>Jeans Faded Black</h3><p>R$ 219,90</p></article>
-        </div>
-      </div>
-    </section>
+</div>
+
+<div id="mensagem-produtos"></div>
+
+<div
+    class="product-grid"
+    id="lista-produtos"
+></div>
+
+    <div class="product-grid" id="lista-produtos"></div>
+
+</section>
 
     <section class="section container reviews">
       <div class="section-heading"><div><span class="eyebrow">Avaliações</span><h2>NOSSOS CLIENTES</h2></div></div>
@@ -139,10 +101,12 @@
 
   <footer id="sobre" class="footer">
     <div class="container footer-grid">
-      <div><a class="logo" href="#">URBAN.CO</a><p>Moda que acompanha seu estilo em todos os momentos.</p></div>
+      <div><a class="logo" href="#">URBAN.E-CO</a><p>Moda que acompanha seu estilo em todos os momentos.</p></div>
       <div><h4>EMPRESA</h4><a href="#">Sobre</a><a href="#">Contato</a><a href="#">Carreiras</a></div>
       <div><h4>AJUDA</h4><a href="#">Suporte</a><a href="#">Entrega</a><a href="#">Trocas</a></div>
-    <div class="container copyright">© 2026 Urban.co. Todos os direitos reservados.</div>
+    <div class="container copyright">© 2026 Urban.E-co. Todos os direitos reservados.</div>
   </footer>
+
+  <script src="./scripts/models/Produtos.js"></script>
 </body>
 </html>
