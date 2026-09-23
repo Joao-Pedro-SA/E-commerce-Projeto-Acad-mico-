@@ -99,12 +99,10 @@ const mensagemProdutos =
 const contadorCarrinho =
     document.getElementById("contador-carrinho");
 
-let carrinho =
-    JSON.parse(localStorage.getItem("carrinho")) || [];
+    const carrinho = new Carrinho();
 
-atualizarContadorCarrinho();
 
-function adicionarAoCarrinho(produto) {
+    function adicionarAoCarrinho(produto) {
 
     if (produto.estoque <= 0) {
 
@@ -113,28 +111,28 @@ function adicionarAoCarrinho(produto) {
         return;
     }
 
-
-    carrinho.push(produto);
-
-
-    localStorage.setItem(
-        "carrinho",
-        JSON.stringify(carrinho)
-    );
-
+    carrinho.adicionar(produto);
 
     atualizarContadorCarrinho();
-
 
     alert(
         produto.nome + " foi adicionado ao carrinho!"
     );
+
 }
 
 function atualizarContadorCarrinho() {
 
-    contadorCarrinho.textContent =
-        carrinho.length;
+    let total = 0;
+
+    for (let i = 0; i < carrinho.itens.length; i++) {
+
+        total += carrinho.itens[i].quantidade;
+
+    }
+
+    contadorCarrinho.textContent = total;
+
 }
 
 function criarCategorias() {
@@ -423,3 +421,5 @@ filtroCategoria.addEventListener(
 criarCategorias();
 
 mostrarProdutos(produtos);
+
+atualizarContadorCarrinho();
