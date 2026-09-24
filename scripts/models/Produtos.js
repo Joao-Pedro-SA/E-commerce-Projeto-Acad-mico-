@@ -5,7 +5,8 @@ class Produto {
         this.nome = nome;
         this.categoria = categoria;
         this.preco = preco;
-        this.estoque = estoque;
+        this.estoqueInicial = estoque;
+        this.estoque = Estoque.consultar({ codigo, estoque });
         this.imagem = imagem;
     }
 
@@ -104,14 +105,17 @@ const contadorCarrinho =
 
     function adicionarAoCarrinho(produto) {
 
-    if (produto.estoque <= 0) {
+    if (Estoque.consultar(produto) <= 0) {
 
         alert("Produto sem estoque.");
 
         return;
     }
 
-    carrinho.adicionar(produto);
+    if (!carrinho.adicionar(produto)) {
+        alert("Quantidade máxima disponível em estoque.");
+        return;
+    }
 
     atualizarContadorCarrinho();
 
@@ -253,7 +257,7 @@ function mostrarProdutos(lista) {
         else if (produto.estoque <= 3) {
 
             disponibilidade.textContent =
-                "Últimas unidades";
+                produto.estoque + (produto.estoque === 1 ? " unidade disponível" : " unidades disponíveis");
 
             disponibilidade.classList.add(
                 "low-stock"
@@ -264,7 +268,7 @@ function mostrarProdutos(lista) {
         else {
 
             disponibilidade.textContent =
-                "Em estoque";
+                produto.estoque + " unidades em estoque";
 
             disponibilidade.classList.add(
                 "in-stock"
@@ -423,3 +427,15 @@ criarCategorias();
 mostrarProdutos(produtos);
 
 atualizarContadorCarrinho();
+
+if (typeof window !== "undefined") {
+    window.addEventListener("pageshow", function (evento) {
+        if (!evento.persisted) return;
+        carrinho.itens = new Carrinho().itens;
+        for (const produto of produtos) {
+            produto.estoque = Estoque.consultar({ codigo: produto.codigo, estoque: produto.estoqueInicial });
+        }
+        filtrarProdutos();
+        atualizarContadorCarrinho();
+    });
+}

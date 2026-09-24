@@ -432,3 +432,35 @@
     font-size: 10px;
     font-weight: 800;
 }
+
+.cart-empty {
+    background: #ffffff;
+    border: 1px solid #e8e8e8;
+    border-radius: 18px;
+    padding: 40px;
+    text-align: center;
+}
+
+.cart-empty p { color: #777777; }
+.cart-empty .checkout-button { display: inline-flex; width: auto; padding: 0 30px; }
+.cart-item-image img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.checkout-button { border: 0; cursor: pointer; }
+.checkout-button:disabled { opacity: .5; cursor: not-allowed; }
+
+@media (max-width: 800px) {
+    .container { width: min(100% - 32px, 1180px); }
+    .cart-layout { grid-template-columns: 1fr; }
+    .order-summary { position: static; }
+    .checkout-steps { display: none; }
+    .benefits-row { grid-template-columns: 1fr; }
+    .cart-footer-inner { flex-wrap: wrap; padding: 20px 0; }
+}
+
+@media (max-width: 480px) {
+    .cart-item { grid-template-columns: 100px 1fr; gap: 12px; padding: 12px; }
+    .cart-item-image { min-height: 120px; }
+    .cart-item-top h2 { font-size: 16px; }
+    .cart-item-bottom { flex-wrap: wrap; }
+    .cart-title-row h1 { font-size: 28px; }
+    .back-link { font-size: 11px; }
+}
