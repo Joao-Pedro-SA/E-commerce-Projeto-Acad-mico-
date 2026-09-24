@@ -1,3 +1,33 @@
+class Estoque {
+    static ler() {
+        try {
+            const salvo = JSON.parse(localStorage.getItem("estoqueProdutos") || "{}");
+            return salvo && typeof salvo === "object" && !Array.isArray(salvo) ? salvo : {};
+        } catch {
+            return {};
+        }
+    }
+
+    static consultar(produto) {
+        const salvo = this.ler()[produto.codigo];
+        return Number.isInteger(salvo) && salvo >= 0 ? salvo : Number(produto.estoque);
+    }
+
+    static disponivel(itens) {
+        return itens.every(item => item.quantidade <= this.consultar(item.produto));
+    }
+
+    static baixar(itens) {
+        if (!this.disponivel(itens)) return false;
+        const quantidades = this.ler();
+        for (const item of itens) {
+            quantidades[item.produto.codigo] = this.consultar(item.produto) - item.quantidade;
+        }
+        localStorage.setItem("estoqueProdutos", JSON.stringify(quantidades));
+        return true;
+    }
+}
+
 class Carrinho {
 
     constructor() {
@@ -5,10 +35,25 @@ class Carrinho {
         const carrinhoSalvo =
             localStorage.getItem("carrinhoOOP");
 
-        this.itens =
-            carrinhoSalvo
-                ? JSON.parse(carrinhoSalvo)
-                : [];
+        try {
+            this.itens = carrinhoSalvo ? JSON.parse(carrinhoSalvo) : [];
+            if (!Array.isArray(this.itens)) this.itens = [];
+        } catch {
+            this.itens = [];
+        }
+
+        try {
+            const anteriores = JSON.parse(localStorage.getItem("carrinho") || "[]");
+            if (Array.isArray(anteriores)) {
+                for (const produto of anteriores) {
+                    if (produto && produto.codigo !== undefined && Number.isFinite(Number(produto.preco))) {
+                        this.adicionar(produto);
+                    }
+                }
+                if (anteriores.length) localStorage.removeItem("carrinho");
+            }
+        } catch {
+        }
 
     }
 
@@ -23,18 +68,16 @@ class Carrinho {
 
     adicionar(produto) {
 
-        if (produto.estoque <= 0) {
-            return;
-        }
+        const disponivel = Estoque.consultar(produto);
+        if (disponivel <= 0) return false;
 
         const itemExistente =
             this.itens.find(item => item.produto.codigo === produto.codigo);
 
         if (itemExistente) {
 
-            if (itemExistente.quantidade < produto.estoque) {
-                itemExistente.quantidade++;
-            }
+            if (itemExistente.quantidade >= disponivel) return false;
+            itemExistente.quantidade++;
 
         } else {
 
@@ -46,6 +89,8 @@ class Carrinho {
         }
 
         this.salvar();
+
+        return true;
 
     }
 
@@ -117,8 +162,22 @@ calcularSubtotal() {
 
 calcularTotal() {
 
-    return this.calcularSubtotal();
+    return this.calcularSubtotal() - this.calcularDesconto();
 
     }
+
+    esvaziar() {
+        this.itens = [];
+        this.salvar();
+    }
+
+calcularDesconto() {
+    const subtotal = this.calcularSubtotal();
+    if (subtotal >= 300) {
+        return subtotal * 0.10;
+    } else {
+        return 0;
+    }
+}
 
 }

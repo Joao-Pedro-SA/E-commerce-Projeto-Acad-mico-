@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
   <div class="topbar">Frete grátis nas compras acima de R$ 299 <span>•</span> Aproveite nossas ofertas</div>
 
   <header class="header container">
-    <a href="#" class="logo">URBAN.E-CO</a>
+    <a href="index.html" class="logo">URBAN.E-CO</a>
     <nav class="nav">
       <a href="#produtos">Produtos</a>
       <a href="#novidades">Novidades</a>
@@ -22,12 +22,12 @@
         <span>⌕</span>
         <input type="search" id="busca-produto" placeholder="Buscar produtos..." />
       </label>
-      <button><a href="carrinho.html" class="cart" aria-label="Acessar carrinho">🛒 <span id="contador-carrinho">0</span></a></button>
+      <a href="carrinho.html" class="cart" aria-label="Acessar carrinho">🛒 <span id="contador-carrinho">0</span></a>
     </div>
   </header>
 
   <main>
-    <section class="hero">
+    <section class="hero" id="novidades">
       <div class="container hero-grid">
         <div class="hero-copy">
           <span class="eyebrow">Nova coleção</span>
@@ -61,12 +61,12 @@
             <h2>PRODUTOS DISPONÍVEIS</h2>
         </div>
 
-        <a href="#carrinho.html" class="btn btn-light">
+        <a href="carrinho.html" class="btn btn-light">
             Ver carrinho
         </a>
     </div>
 
-    <div class="filtros">
+    <div class="filtros" id="categorias">
 
     <label for="filtro-categoria">
         Categoria:
@@ -85,8 +85,6 @@
     id="lista-produtos"
 ></div>
 
-    <div class="product-grid" id="lista-produtos"></div>
-
 </section>
 
     <section class="section container reviews">
@@ -101,9 +99,10 @@
 
   <footer id="sobre" class="footer">
     <div class="container footer-grid">
-      <div><a class="logo" href="#">URBAN.E-CO</a><p>Moda que acompanha seu estilo em todos os momentos.</p></div>
-      <div><h4>EMPRESA</h4><a href="#">Sobre</a><a href="#">Contato</a><a href="#">Carreiras</a></div>
-      <div><h4>AJUDA</h4><a href="#">Suporte</a><a href="#">Entrega</a><a href="#">Trocas</a></div>
+      <div><a class="logo" href="index.html">URBAN.E-CO</a><p>Moda que acompanha seu estilo em todos os momentos.</p></div>
+      <div><h4>EMPRESA</h4><a href="#sobre">Sobre</a></div>
+      <div><h4>AJUDA</h4><a href="carrinho.html">Meu carrinho</a></div>
+    </div>
     <div class="container copyright">© 2026 Urban.E-co. Todos os direitos reservados.</div>
   </footer>
 

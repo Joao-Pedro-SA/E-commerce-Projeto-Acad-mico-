@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="carrinho.css">
-    <title>carrinho</title>
+    <title>Carrinho | Urban.E-co</title>
 </head>
 <body>
     <div class="topbar">Frete grátis nas compras acima de R$ 299 <span>•</span> Compra segura</div>
@@ -16,9 +17,7 @@
       <div class="checkout-steps" aria-label="Etapas da compra">
         <span class="step active">1 <strong>Carrinho</strong></span>
         <span class="step-line"></span>
-        <span class="step">2 <strong>Entrega</strong></span>
-        <span class="step-line"></span>
-        <span class="step">3 <strong>Pagamento</strong></span>
+        <span class="step">2 <strong>Resumo da compra</strong></span>
       </div>
 
       <a href="index.html" class="back-link">← Continuar comprando</a>
@@ -53,29 +52,27 @@
 
           <div class="summary-line">
             <span>Entrega</span>
-            <strong class="free-shipping">Grátis</strong>
+            <strong id="entrega-carrinho">A calcular</strong>
           </div>
 
-          <div class="coupon-area">
-            <label for="coupon">Cupom de desconto</label>
-            <div class="coupon-box">
-              <input id="coupon" type="text" placeholder="Digite seu cupom" />
-              <button type="button">Aplicar</button>
-            </div>
+          <div class="summary-line">
+            <span>Desconto automático (10% a partir de R$ 300)</span>
+            <strong id="desconto-carrinho">R$ 0,00</strong>
           </div>
 
           <div class="summary-total">
-            <span>Total</span>
+            <span>Total dos produtos</span>
             <strong id="total-carrinho">R$ 0,00</strong>
           </div>
           
-          <p class="installment">ou até 6x de R$ 61,63 sem juros</p>
+          <p class="installment" id="parcelamento">ou até 6x sem juros</p>
 
-          <a href="#" class="checkout-button">Continuar para entrega</a>
+          <button type="button" class="checkout-button" id="botao-checkout">Finalizar compra simulada</button>
+          <p id="status-checkout" role="status" aria-live="polite"></p>
 
           <div class="secure-purchase">
             <span>🔒</span>
-            <p><strong>Compra segura</strong><br />Seus dados são protegidos durante todo o processo.</p>
+            <p><strong>Projeto acadêmico</strong><br />Esta finalização é uma simulação. Nenhum pagamento é processado.</p>
           </div>
         </aside>
       </div>

@@ -313,3 +313,22 @@ a {
     padding-top: 20px;
     border-top: 1px solid #ddd;
 }
+
+@media (max-width: 800px) {
+    .container { width: min(100% - 32px, 1180px); }
+    .header { height: auto; min-height: 76px; flex-wrap: wrap; padding: 16px 0; }
+    .nav { order: 3; width: 100%; flex-wrap: wrap; }
+    .actions { margin-left: auto; }
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-art { display: none; }
+    .search { width: min(300px, 38vw); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 480px) {
+    .header { gap: 16px; }
+    .logo { font-size: 23px; }
+    .actions { width: 100%; justify-content: space-between; }
+    .search { width: calc(100% - 56px); }
+    .footer-grid { grid-template-columns: 1fr; }
+}
